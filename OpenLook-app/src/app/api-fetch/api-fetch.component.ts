@@ -7,9 +7,11 @@ import { mockCountries, mockGenres } from "mocks"
 
 
 interface Country {
+  services: Object;
   name: string;
   // Add other properties if available in your country objects
 }
+
 
 @Component({
   selector: 'app-api-fetch',
@@ -19,6 +21,7 @@ interface Country {
 export class ApiFetchComponent implements OnInit {
 
   genres: any = {};
+  services: any;
   countries: { result: { [key: string]: Country } } = { result: {} };
   selectedCountryId: string = ""; // Property to store the selected genre ID
 
@@ -76,11 +79,17 @@ export class ApiFetchComponent implements OnInit {
   }
 
 
+  // can get available services from country endpooint
+  // need to pass country and services to filter search
+
   onCountrySelectionChange() {
     console.log('Selected Country ID:', this.selectedCountryId);
 
-    const selectedCountryName = this.countries.result[this.selectedCountryId];
-    console.log('Selected Genre Name:', selectedCountryName.name);
+    const selectedCountryName = this.countries.result[this.selectedCountryId].name;
+    console.log('Selected Genre Name:', selectedCountryName);
+
+    this.services = this.countries.result[this.selectedCountryId].services
+    console.log(this.services)
   }
 
 }

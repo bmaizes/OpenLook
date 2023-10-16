@@ -1,10 +1,13 @@
 <p>api-fetch works!</p>
-<button (click)="fetchCountries()">Fetch countries!</button>
-<button (click)="fetchGenres()">Fetch genres!</button>
+<!-- <button (click)="fetchCountries()">Fetch countries!</button>
+<button (click)="fetchGenres()">Fetch genres!</button> -->
 
   <select [(ngModel)]="selectedCountryId" (ngModelChange)="onCountrySelectionChange()">
     <option *ngFor="let country of countries.result | keyvalue" [value]="country.key">{{ country.value.name }}</option>
   </select>
-<li *ngFor="let genre of genres.result | keyvalue">
+
+  <app-service-checkboxes [services]="services"></app-service-checkboxes>
+
+<!-- <li *ngFor="let genre of genres.result | keyvalue">
     {{ genre.key }}: {{ genre.value }}
-  </li>
+  </li> -->
