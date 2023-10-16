@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { key } from "key"
 
 @Component({
   selector: 'app-api-fetch',
@@ -16,7 +17,7 @@ export class ApiFetchComponent {
       method: 'GET',
       url: 'https://streaming-availability.p.rapidapi.com/genres',
       headers: {
-        'X-RapidAPI-Key': 'cc241bc140msh82842c18751b73ap1bd415jsn11cdd4bfa0fd',
+        'X-RapidAPI-Key': key,
         'X-RapidAPI-Host': 'streaming-availability.p.rapidapi.com'
       }
     };
@@ -37,7 +38,7 @@ export class ApiFetchComponent {
       method: 'GET',
       url: 'https://streaming-availability.p.rapidapi.com/countries',
       headers: {
-        'X-RapidAPI-Key': 'cc241bc140msh82842c18751b73ap1bd415jsn11cdd4bfa0fd',
+        'X-RapidAPI-Key': key,
         'X-RapidAPI-Host': 'streaming-availability.p.rapidapi.com'
       }
     };
