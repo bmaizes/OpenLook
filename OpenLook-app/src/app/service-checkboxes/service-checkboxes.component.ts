@@ -13,6 +13,8 @@ interface Service {
 })
 export class ServiceCheckboxesComponent {
   @Input() services: { [key: string]: Service; } | undefined;
+  @Input() selectedCountryId: string = "";
+
   selectedServiceIds: string[] = [];
 
   toggleService(serviceId: string): void {

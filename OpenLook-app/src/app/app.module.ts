@@ -6,13 +6,15 @@ import { AppComponent } from './app.component';
 import { ApiFetchComponent } from './api-fetch/api-fetch.component';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-import { ServiceCheckboxesComponent } from './service-checkboxes/service-checkboxes.component'; // Import FormsModule
+import { ServiceCheckboxesComponent } from './service-checkboxes/service-checkboxes.component';
+import { SearchComponent } from './search/search.component'; // Import FormsModule
 
 @NgModule({
   declarations: [
     AppComponent,
     ApiFetchComponent,
-    ServiceCheckboxesComponent
+    ServiceCheckboxesComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,
