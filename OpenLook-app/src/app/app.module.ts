@@ -7,7 +7,8 @@ import { ApiFetchComponent } from './api-fetch/api-fetch.component';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { ServiceCheckboxesComponent } from './service-checkboxes/service-checkboxes.component';
-import { SearchComponent } from './search/search.component'; // Import FormsModule
+import { SearchComponent } from './search/search.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; // Import FormsModule
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { SearchComponent } from './search/search.component'; // Import FormsModu
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
