@@ -22,33 +22,62 @@ export class SearchComponent {
     this.searchByFilter(userInput);
 }
 
+
+
+
  searchFunction(query: string): void {
     // Do something with the search query, for example, log it to the console
     console.log("User searched for: " + query);
 }
 
+  // searchByFilter(query: string) {
+  //   // this.genres = mockGenres
+  //   const options = {
+  //     method: 'GET',
+  //     url: 'https://streaming-availability.p.rapidapi.com/search/filters',
+  //     params: {
+  //       services: this.selectedServiceIds,
+  //       country: this.selectedCountryId,
+  //       keyword: query,
+  //       output_language: 'en',
+  //       order_by: 'original_title',
+  //       genres_relation: 'and',
+  //       show_type: 'all'
+  //     },
+  //     headers: {
+  //       'X-RapidAPI-Key': '2cdd5bb74fmsh7cb05bb1e97935ap14c4d2jsne222a4828ed5',
+  //       'X-RapidAPI-Host': 'streaming-availability.p.rapidapi.com'
+  //     }
+  //   };
+  //   return this.http.get<any>(options.url, options).subscribe(
+  //     response => {
+  //       console.log(response)
+  //     },
+  //     error => {
+  //       console.error('Error:', error);
+  //     }
+  //   );
+  // }
+
   searchByFilter(query: string) {
-    // this.genres = mockGenres
+    
+
+    console.log(this.selectedServiceIds)
+
     const options = {
       method: 'GET',
-      url: 'https://streaming-availability.p.rapidapi.com/search/filters',
+      url: 'https://qsihe4v2fghltodimsopstzk2e0atkgv.lambda-url.us-east-1.on.aws',
       params: {
-        services: this.selectedServiceIds,
         country: this.selectedCountryId,
-        keyword: query,
-        output_language: 'en',
-        order_by: 'original_title',
-        genres_relation: 'and',
-        show_type: 'all'
+        title: query,
+        language: 'en',
       },
-      headers: {
-        'X-RapidAPI-Key': '2cdd5bb74fmsh7cb05bb1e97935ap14c4d2jsne222a4828ed5',
-        'X-RapidAPI-Host': 'streaming-availability.p.rapidapi.com'
-      }
-    };
+    };  
+
+
     return this.http.get<any>(options.url, options).subscribe(
       response => {
-        console.log(response)
+        console.log('Response:', response);
       },
       error => {
         console.error('Error:', error);
