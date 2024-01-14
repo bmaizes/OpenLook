@@ -1,8 +1,6 @@
 import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { key } from "key"
 import { mockCountries, mockGenres } from "mocks"
-
 
 
 
@@ -16,7 +14,8 @@ interface Country {
 @Component({
   selector: 'app-api-fetch',
   templateUrl: './api-fetch.component.html',
-  styleUrls: ['./api-fetch.component.css']
+  styleUrls: ['./api-fetch.component.css'],
+
 })
 export class ApiFetchComponent implements OnInit {
 

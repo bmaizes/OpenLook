@@ -1,0 +1,13 @@
+<h2>Movies: </h2>
+<div class="scrollable-panel movie-panel">
+  <div *ngFor="let movie of movies" class="movie-card">
+    {{ movie.title }}
+  </div>
+</div>
+<br>
+<h2>Shows: </h2>
+<div class="scrollable-panel show-panel">
+  <div *ngFor="let show of shows" class="show-card">
+    {{ show.title }}
+  </div>
+</div>
