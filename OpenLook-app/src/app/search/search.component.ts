@@ -4,31 +4,66 @@ import { Component, Input } from '@angular/core';
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
-  styleUrls: ['./search.component.css']
+  styleUrls: ['./search.component.css'],
 })
 export class SearchComponent {
-
   constructor(private http: HttpClient) {}
   @Input() selectedServiceIds: string[] = [];
-  @Input() selectedCountryId: string = "";
+  @Input() selectedCountryId: string = '';
+  result: any = [];
+  hasMore: boolean = false; // Add hasMore property
 
-
-   handleSearch(): void {
+  handleSearch(): void {
     // Get the input value from the search bar
-    const searchInput = document.getElementById("searchInput") as HTMLInputElement;
+    const searchInput = document.getElementById(
+      'searchInput'
+    ) as HTMLInputElement;
     const userInput: string = searchInput.value;
-    
+
     // Call a TypeScript function with the user input
     this.searchByFilter(userInput);
-}
+  }
 
+  loadMore(): void {
+    // Add logic to load more results using the cursor
+    // Update the API call with the appropriate cursor value
+    // Set hasMore property based on the response
 
+    const searchInput = document.getElementById(
+      'searchInput'
+    ) as HTMLInputElement;
+    const userInput: string = searchInput.value;
 
+    const options = {
+      method: 'GET',
+      url: 'https://vndjn3z2ce5koorpy42okoapja0ppjti.lambda-url.us-east-1.on.aws',
+      params: {
+        services: this.selectedServiceIds,
+        country: this.selectedCountryId,
+        keyword: userInput,
+        // cursor: encodeURIComponent(this.result.nextCursor),
+        cursor: this.result.nextCursor,
+        language: 'en',
+      },
+    };
 
- searchFunction(query: string): void {
+    this.http.get<any>(options.url, options).subscribe(
+      (response) => {
+        console.log(this.result.nextCursor)
+        console.log('Response:', response);
+        this.result = response;
+        this.hasMore = response.hasMore; // Set hasMore based on the response
+      },
+      (error) => {
+        console.error('Error:', error);
+      }
+    );
+  }
+
+  searchFunction(query: string): void {
     // Do something with the search query, for example, log it to the console
-    console.log("User searched for: " + query);
-}
+    console.log('User searched for: ' + query);
+  }
 
   // searchByFilter(query: string) {
   //   // this.genres = mockGenres
@@ -59,30 +94,68 @@ export class SearchComponent {
   //   );
   // }
 
-  searchByFilter(query: string) {
-    
+  // searchByFilter(query: string) {
 
-    console.log(this.selectedServiceIds)
+  //   console.log(this.selectedServiceIds)
 
-    const options = {
-      method: 'GET',
-      url: 'https://qsihe4v2fghltodimsopstzk2e0atkgv.lambda-url.us-east-1.on.aws',
-      params: {
-        country: this.selectedCountryId,
-        title: query,
-        language: 'en',
-      },
-    };  
+  //   const options = {
+  //     method: 'GET',
+  //     url: 'https://qsihe4v2fghltodimsopstzk2e0atkgv.lambda-url.us-east-1.on.aws',
+  //     params: {
+  //       country: this.selectedCountryId,
+  //       title: query,
+  //       language: 'en',
+  //     },
+  //   };
 
+  //   return this.http.get<any>(options.url, options).subscribe(
+  //     response => {
+  //       console.log('Response:', response);
+  //       this.result = response;
+  //     },
+  //     error => {
+  //       console.error('Error:', error);
+  //     }
+  //   );
+  // }
 
-    return this.http.get<any>(options.url, options).subscribe(
-      response => {
+  searchByFilter(query: string): void {
+    let to_input = null;
+
+    if (this.selectedServiceIds.length == 0) {
+      const options = {
+        method: 'GET',
+        url: 'https://qsihe4v2fghltodimsopstzk2e0atkgv.lambda-url.us-east-1.on.aws',
+        params: {
+          country: this.selectedCountryId,
+          title: query,
+          language: 'en',
+        },
+      };
+      to_input = options;
+    } else {
+      const options = {
+        method: 'GET',
+        url: 'https://vndjn3z2ce5koorpy42okoapja0ppjti.lambda-url.us-east-1.on.aws',
+        params: {
+          services: this.selectedServiceIds,
+          country: this.selectedCountryId,
+          keyword: query,
+          language: 'en',
+        },
+      };
+      to_input = options;
+    }
+
+    this.http.get<any>(to_input.url, to_input).subscribe(
+      (response) => {
         console.log('Response:', response);
+        this.result = response;
+        this.hasMore = response.hasMore; // Set hasMore based on the response
       },
-      error => {
+      (error) => {
         console.error('Error:', error);
       }
     );
   }
-
 }
