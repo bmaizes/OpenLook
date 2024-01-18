@@ -28,4 +28,18 @@ export class ResultsComponent implements OnInit, OnChanges {
       console.log('Shows updated:', this.shows);
     }
   }
+
+  redirectToLink(services: any): void {
+    // You can customize this logic based on your requirements
+    // For example, open the first available link in a new tab
+    console.log(services)
+    const firstService = Object.keys(services)[0];
+    const link = services[firstService];
+
+    if (link) {
+      window.open(link, '_blank'); // Opens the link in a new tab/window
+      // Alternatively, if you want to navigate within the app, you can use Angular's Router:
+      // this.router.navigateByUrl(link);
+    }
+  }
 }
