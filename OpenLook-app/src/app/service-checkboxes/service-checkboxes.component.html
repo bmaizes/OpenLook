@@ -1,9 +1,0 @@
-<div *ngFor="let service of services | keyvalue">
-    <label>
-      <input type="checkbox" [value]="service.value.id" (change)="toggleService(service.value.id)">
-      {{ service.value.name }}
-    </label>
-  </div>
-  
-
-  <app-search [selectedServiceIds]="selectedServiceIds" [selectedCountryId]="selectedCountryId"></app-search>
