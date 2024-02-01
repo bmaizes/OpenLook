@@ -11,6 +11,7 @@ export class SearchComponent {
   @Input() selectedServiceIds: string[] = [];
   @Input() selectedCountryId: string = '';
   result: any = [];
+  cursorStack: any = [];
   hasMore: boolean = false; // Add hasMore property
 
   handleSearch(): void {
@@ -47,9 +48,57 @@ export class SearchComponent {
       },
     };
 
+    this.cursorStack.push(this.result.nextCursor)
+
     this.http.get<any>(options.url, options).subscribe(
       (response) => {
-        console.log(this.result.nextCursor)
+        console.log(this.cursorStack)
+        console.log('Response:', response);
+        this.result = response;
+        this.hasMore = response.hasMore; // Set hasMore based on the response
+      },
+      (error) => {
+        console.error('Error:', error);
+      }
+    );
+  }
+
+
+  loadPrev(): void {
+    // Add logic to load more results using the cursor
+    // Update the API call with the appropriate cursor value
+    // Set hasMore property based on the response
+
+    const searchInput = document.getElementById(
+      'searchInput'
+    ) as HTMLInputElement;
+    const userInput: string = searchInput.value;
+    const prev = this.cursorStack.length >= 2 ? this.cursorStack[this.cursorStack.length - 2] : null;
+    this.cursorStack.pop();
+
+    console.log(prev);
+    
+    const params: any = {
+      services: this.selectedServiceIds,
+      country: this.selectedCountryId,
+      keyword: userInput,
+      language: 'en',
+    };
+    
+    if (prev !== null && prev !== undefined) {
+      params.cursor = prev;
+    }
+    
+    const options = {
+      method: 'GET',
+      url: 'https://vndjn3z2ce5koorpy42okoapja0ppjti.lambda-url.us-east-1.on.aws',
+      params: params,
+    };
+    
+    // this.cursorStack.push(this.result.nextCursor)
+    this.http.get<any>(options.url, options).subscribe(
+      (response) => {
+        console.log(this.cursorStack)
         console.log('Response:', response);
         this.result = response;
         this.hasMore = response.hasMore; // Set hasMore based on the response
@@ -146,10 +195,12 @@ export class SearchComponent {
       };
       to_input = options;
     }
-
+    // this.prevCursor = this.result.nextCursor;
+    this.cursorStack.push(this.result.nextCursor)
     this.http.get<any>(to_input.url, to_input).subscribe(
       (response) => {
         console.log('Response:', response);
+        console.log(this.cursorStack)
         this.result = response;
         this.hasMore = response.hasMore; // Set hasMore based on the response
       },
