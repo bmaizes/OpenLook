@@ -7,5 +7,7 @@
 
 <app-results [movies]="result.movies" [shows]="result.shows"></app-results>
 
+<button *ngIf="cursorStack.length > 1" (click)="loadPrev()">Load Previous</button>
 
 <button *ngIf="hasMore" (click)="loadMore()">Load More</button>
+

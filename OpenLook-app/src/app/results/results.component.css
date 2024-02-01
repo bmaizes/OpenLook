@@ -12,6 +12,10 @@
   background-color: #e0e0e0; /* Show panel background color */
 }
 
+.nothing {
+  color: #951e1e
+}
+
 .movie-card,
 .show-card {
   flex: 0 0 calc(33.33% - 10px);
