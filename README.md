@@ -63,10 +63,6 @@ This application connects to streaming service APIs to retrieve data about avail
 - The current version includes mock data for genres and countries to facilitate development and testing. Actual API calls are commented out in favor of using mock data.
 - To fully utilize the app, consider integrating real API endpoints by uncommenting the relevant code sections and providing valid API keys.
 
-## Contributors
-
-- [Your Name] - [Your Email]
-
 ## License
 
 This project is licensed under the [License Name] License - see the [LICENSE.md](LICENSE.md) file for details.
@@ -94,9 +90,9 @@ npm run test
 
 👤 **Benjamin Maizes, Benjamin Goldfried, Ian Stebbins**
 
-* Website: benmaizes.com
-* Github: [@bmaizes](https://github.com/bmaizes)
-* LinkedIn: [@Benjamin-Maizes](https://linkedin.com/in/Benjamin-Maizes)
+<!-- * Website: benmaizes.com
+* Github: [@bmaizes](https://github.com/bmaizes) 
+* LinkedIn: [@Benjamin-Maizes](https://linkedin.com/in/Benjamin-Maizes) -->
 
 ## Show your support
 
