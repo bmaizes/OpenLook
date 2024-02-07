@@ -66,7 +66,7 @@ This application connects to streaming service APIs to retrieve data about avail
 ## License
 
 This project is licensed under the [License Name] License - see the [LICENSE.md](LICENSE.md) file for details.
-### ✨ [Demo](benmaizes.com/OpenLook)
+### ✨ [Demo](https://www.benmaizes.com/OpenLook)
 
 ## Install
 
