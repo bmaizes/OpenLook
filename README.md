@@ -7,6 +7,8 @@
 
 This Angular application enables users to simultaneously search multiple streaming services for movies and shows using a single keyword. By integrating with streaming service APIs, users can input their owned streaming services and explore content across those platforms seamlessly.
 
+We also emply an AWS backend to filter API results and maintain user data. 
+
 ## Features
 
 - **Multi-Service Search**: Search for movies and shows across various streaming platforms simultaneously.
