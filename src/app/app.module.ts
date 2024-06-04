@@ -12,7 +12,7 @@ import { ServiceCheckboxesComponent } from './service-checkboxes/service-checkbo
 import { SearchComponent } from './search/search.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ResultsComponent } from './results/results.component'; // Import FormsModule
-import { environment } from 'src/environments/environments';
+// import { environment } from 'src/environments/environments';
 
 @NgModule({ declarations: [
         AppComponent,
@@ -25,7 +25,7 @@ import { environment } from 'src/environments/environments';
     imports: [MatSelectModule,
         BrowserModule,
         FormsModule,
-        AngularFireModule.initializeApp(environment.firebase),
+        // AngularFireModule.initializeApp(environment.firebase),
         AngularFireAuthModule,
         BrowserModule,
         AppRoutingModule,
